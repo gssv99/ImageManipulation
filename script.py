@@ -8,7 +8,7 @@ from pathlib import Path
 inputDir = str(os.path.dirname(__file__) + Input)
 outputDir = str(os.path.dirname(__file__) + Output)
    
-def imageConvert(path,outdir):
+def imageConvert(path,outdir, format, Dquality):
     print('img converter called')     
     files = os.listdir(path)
     if files:
@@ -21,7 +21,7 @@ def imageConvert(path,outdir):
                             input = Image.open(path + "/" + file)
                             input = input.convert('RGBA').convert('P', palette=Image.ADAPTIVE, colors=255)
                             Path(outdir).mkdir(parents=True, exist_ok=True)
-                            input.save(outdir + "/" + image_name + ".webp" ,"webp", quality=50)
+                            input.save(outdir + "/" + image_name + "." + format ,format, quality = Dquality)
                         else: 
                             print("Is not an Image: " + pathfile)   
             elif os.path.isdir(pathfile): 
@@ -39,7 +39,10 @@ def is_valid_image_pillow(file_name):
         return False
 
 if __name__ == '__main__':
- 
+    format = ""
+    Dquality = 95
     print(inputDir)
     print(outputDir) 
-    imageConvert(inputDir,outputDir)
+    input("Qual o formato desejado das imagens: " , format)
+    input("Qual a qualidade das imagens, de 1 a 100: ", Dquality)
+    imageConvert(inputDir,outputDir, format.lower(), Dquality)
