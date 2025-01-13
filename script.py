@@ -43,6 +43,6 @@ if __name__ == '__main__':
     Dquality = 95
     print(inputDir)
     print(outputDir) 
-    input("Qual o formato desejado das imagens: " , format)
-    input("Qual a qualidade das imagens, de 1 a 100: ", Dquality)
+    format = input("Insira o formato desejado das imagens: ")
+    Dquality = input("insira a qualidade das imagens, de 1 a 100: ")
     imageConvert(inputDir,outputDir, format.lower(), Dquality)
